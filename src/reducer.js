@@ -1,20 +1,23 @@
-let state = { count: 0 };
+let state
 
-function changeState(state, action) {
+function changeState(state = { count: 0 }, action) {
   switch (action.type) {
-    case "counter/increment":
-      return { count: state.count + 1 };
+    case 'counter/increment':
+      return { count: state.count + 1 }
+
     default:
-      return state;
+      return state
   }
 }
 
 function dispatch(action) {
-  state = changeState(state, action);
-  render();
+  state = changeState(state, action)
+  render()
 }
 
 function render() {
-  const app = document.querySelector("#app");
-  app.textContent = state.count;
+  document.body.textContent = state.count
 }
+
+// dispatch({ type: '@@INIT' })
+dispatch({ type: 'counter/increment' })
